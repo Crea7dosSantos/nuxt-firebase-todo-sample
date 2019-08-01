@@ -1,0 +1,1 @@
+import { vuexfireMutations } from 'vuexfire'
