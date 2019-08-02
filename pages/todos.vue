@@ -6,8 +6,9 @@
                 type="checkbox"
                 v-bind:checked="todo.done"
                 @change="toggle(todo)">
-
-                {{ todo.created }} : {{ todo.done }} : {{ todo.name }}
+                <span v-bind:class="{ done: todo.done }">
+                {{ todo.name }} : {{ todo.created }}   <!-- この記述でdoneだったらdoneクラスが設定され、doneではなかったら何も設定されない事になる。  -->
+                </span>
                 <button v-on:click="remove(todo.id)">削除</button>
             </li>
         </ul>
@@ -51,3 +52,9 @@ export default {
     }
 }
 </script>
+
+<style>
+li > span.done {
+    text-decoration: line-through;
+}
+</style>
