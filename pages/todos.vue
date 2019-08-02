@@ -2,14 +2,16 @@
     <div>
         <ul>
             <li v-for="todo in todos" :key="todo.id">
-                <input
-                type="checkbox"
-                v-bind:checked="todo.done"
-                @change="toggle(todo)">
-                <span v-bind:class="{ done: todo.done }">
-                {{ todo.name }} : {{ todo.created }}   <!-- この記述でdoneだったらdoneクラスが設定され、doneではなかったら何も設定されない事になる。  -->
+                <span v-if="todo.created">   <!-- これでcreatedに値が入っている時だけ描画するようにする。 -->
+                    <input
+                    type="checkbox"
+                    v-bind:checked="todo.done"
+                    @change="toggle(todo)">
+                    <span v-bind:class="{ done: todo.done }">
+                    {{ todo.name }} : {{ todo.created.toDate() | dateFilter }}   <!-- この記述でdoneだったらdoneクラスが設定され、doneではなかったら何も設定されない事になる。  -->
+                    </span>
+                    <button v-on:click="remove(todo.id)">削除</button>
                 </span>
-                <button v-on:click="remove(todo.id)">削除</button>
             </li>
         </ul>
             <div class="form">
@@ -22,6 +24,8 @@
 </template>
 
 <script>
+import moment from 'moment'
+
 export default {
     data: function() {
         return {
@@ -49,12 +53,17 @@ export default {
         todos() {
             return this.$store.state.todos.todos
         }
+    },
+    filters: {
+        dateFilter: function(date) {
+            return moment(date).format('YYYY/MM/DD HH:mm:ss')
+        }
     }
 }
 </script>
 
 <style>
-li > span.done {
+li > span span.done {
     text-decoration: line-through;
 }
 </style>
