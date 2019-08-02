@@ -12,7 +12,7 @@ export const state = () => ({
 export const actions = {
     // 初期化
     init: firestoreAction(({ bindFirestoreRef }) => {
-        bindFirestoreRef('todos', todosRef)   // bindFirestoreRefにbindしたいdbのnameと参照先を渡すとstateにデータがbindされる
+        bindFirestoreRef('todos', todosRef)   // bindFirestoreRefにbindしたいdbのnameと参照先を渡すとstateにデータがbindされる（関連づけられるみたいな雰囲気）
     }),
     // 追加
     add: firestoreAction((context, name) => {
