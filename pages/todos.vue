@@ -2,6 +2,11 @@
     <div>
         <ul>
             <li v-for="todo in todos" :key="todo.id">
+                <input
+                type="checkbox"
+                v-bind:checked="todo.done"
+                @change="toggle(todo)">
+
                 {{ todo.created }} : {{ todo.done }} : {{ todo.name }}
                 <button v-on:click="remove(todo.id)">削除</button>
             </li>
@@ -34,6 +39,9 @@ export default {
         },
         remove(id) {
             this.$store.dispatch('todos/remove', id)
+        },
+        toggle(todo) {
+            this.$store.dispatch('todos/toggle', todo)   // idではなく、todoを渡す理由は、idだとdoneの値にアクセスできないから。
         }
     },
     computed: {
