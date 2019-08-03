@@ -12,6 +12,7 @@
                     </span>
                     <button v-on:click="remove(todo.id)">削除</button>
                 </span>
+                {{ todo.id }}
             </li>
         </ul>
             <div class="form">
@@ -51,7 +52,7 @@ export default {
     },
     computed: {
         todos() {
-            return this.$store.state.todos.todos
+            return this.$store.getters['todos/orderdTodos']
         }
     },
     filters: {
