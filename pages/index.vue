@@ -13,16 +13,6 @@ export default {
   components: {
     Signin,
   }
-  // mounted: function() {
-  //   firebase.auth().onAuthStateChanged(user => {
-  //     if (user) {
-  //       // Sign in success
-  //       this.$router.push('~/todos')
-  //     } else {
-  //       // Error handle
-  //     };
-  //   });
-  // }
 }
 </script>
 

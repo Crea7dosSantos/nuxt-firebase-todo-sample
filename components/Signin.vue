@@ -9,16 +9,13 @@
 
 <script>
 import firebase from '~/plugins/firebase'
-import 'firebase/auth'
+import 'firebaseui/dist/firebaseui.css'
 
 const uiConfig = {
-    signInSuccessUrl: '/',
+    signInSuccessUrl: '/todos',
     signInOptions: [
-        {
-    provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
-    signInMethod: firebase.auth.EmailAuthProvider.EMAIL_LINK_SIGN_IN_METHOD
-        }
-  ],
+        firebase.auth.EmailAuthProvider.PROVIDER_ID  //メール認証
+    ],
 }
 
 export default {
